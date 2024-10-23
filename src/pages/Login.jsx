@@ -34,13 +34,13 @@ const Login = () => {
   // Handle form submission
   const handleSubmit = async () => {
     if (loading) return; // Prevent submission if already loading
-
+  
     setLoading(true); // Set loading to true
-
+  
     try {
       const currentUser = await AuthService.login(user.username, user.password);
       if (currentUser.status === 200) {
-        login(currentUser.data);
+        login(currentUser.data); // เรียกใช้ฟังก์ชัน login ใน AuthContext
         Swal.fire({
           title: "User Login",
           text: "Login Successfully",
@@ -50,7 +50,7 @@ const Login = () => {
           username: "",
           password: "",
         });
-        navigate("/");
+        navigate("/"); // เปลี่ยนไปที่หน้าแดชบอร์ดที่นี่
       }
     } catch (error) {
       Swal.fire({
@@ -62,7 +62,6 @@ const Login = () => {
       setLoading(false); // Set loading to false after login attempt
     }
   };
-
   return (
     <div className="container mx-auto max-w-96 my-auto p-4">
       {/* Username Input */}
